@@ -1,0 +1,5 @@
+evidently==0.4.39
+pandas==2.2.3
+numpy==2.0.2
+nannyml==0.12.1
+plotly==5.24.1
