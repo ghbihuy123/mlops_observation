@@ -3,6 +3,6 @@ dependencies
 dist
 build
 reports/
-notebook/
+# notebook/
 examples/
 *.egg-info
