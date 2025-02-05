@@ -31,7 +31,11 @@
 ├── setup.py                    # Script thiết lập đóng gói package
 ```
 # Hướng dẫn sử dụng
-## Ví dụ của một column mapping
+## Điều kiện tiên quyết
+Để có thể sinh ra dashboard, điều kiện tiên quyết là cần chuẩn bị các artifact sau:
+- `Reference Data` (định dạng pd.DataFrame)
+- `Current Data` (định dạng pd.DataFrame, và cùng schema với Reference Data)
+- `Column Mapping`: Khai báo tên các cột categorical, numerical, target, ... Ví dụ của một column mapping:
 ```python
 from mlops_observation import ColumnMapping
 # List các tên cột cho column mapping
@@ -47,7 +51,18 @@ column_mapping.numerical_features = numerical_features
 column_mapping.categorical_features = categorical_features
 column_mapping.datetime_features = timestamp_col
 ```
+### Period Metric
+Đây là các metric có cơ chế hoạt động như sau:
+- Lấy tập Reference Data làm base
+- Lấy tập Current Data, chia theo từng thời kỳ (ex: từng tháng, mỗi 15 ngày, từng năm, ...) thành nhiều chunks, và so sánh mỗi chunk (mỗi thời kỳ) với tập Reference Data
 
+Hiện tại đang có:
+- `PeriodDataDriftMetric`,
+- `PeriodDataQualityMetric`,
+- `PeriodFeatureQualityMetric`,
+- `PeriodMissingValueMetric`
+
+**Điều kiện tiên quyết**: Ta sẽ cần phải định nghĩa `column_mapping.datetime_features` để Mlops Observation có thể chia thời kỳ theo trường thời gian này
 ## Data Quality
 - Data đầu vào là DataFrame
 - Cần define list categorical features và numerical feature
@@ -162,6 +177,9 @@ report.show()
 report.save_html('file_name.html')
 ```
 
-## Model Explain
-(Pending)
-
+# Hướng phát triển cho tương lai
+- Monitor Platform (Ưu tiên)
+- Concept Drift
+- Multivariate Drift
+- Model Performance Estimate
+- Model Explain
