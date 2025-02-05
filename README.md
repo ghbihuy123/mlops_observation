@@ -8,7 +8,7 @@
 
 ```
 ├── dist/                       # Chứa file wheel đã được đóng gói thành package
-├── docs/                       # Tài liệu hướng dẫn sử dụng và API
+├── docs/                       # Tài liệu hướng dẫn sử dụng
 ├── examples/                   # Các file ví dụ
 ├── notebook/                   # Chứa các Jupyter Notebook dùng cho kiểm tra và phân tích
 ├── reports/                    # Báo cáo kết quả kiểm tra mô hình
